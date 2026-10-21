@@ -106,12 +106,7 @@ export function SettingsSidebar({
       </div>
 
       {/* Plan & Usage Ambient Card */}
-      <div
-        className="relative overflow-hidden rounded-[28px] p-6 shadow-xs border border-amber-200/40 flex flex-col justify-between"
-        style={{
-          background: `radial-gradient(ellipse at 85% 15%, rgba(254, 215, 170, 0.75) 0%, rgba(254, 240, 138, 0.45) 45%, rgba(255, 251, 235, 0.8) 75%, #ffffff 100%)`,
-        }}
-      >
+      <div className="sensus-ambient-card relative overflow-hidden rounded-[28px] p-6 shadow-xs border flex flex-col justify-between">
         <div className="relative z-10">
           <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">
             Sensus Personal Life OS

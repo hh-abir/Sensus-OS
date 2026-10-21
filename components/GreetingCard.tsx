@@ -7,12 +7,7 @@ export function GreetingCard() {
   const [updatesCount, setUpdatesCount] = useState(6);
 
   return (
-    <div
-      className="relative overflow-hidden rounded-[28px] p-7 shadow-xs border border-amber-200/40 flex flex-col justify-between"
-      style={{
-        background: `radial-gradient(ellipse at 85% 15%, rgba(254, 215, 170, 0.75) 0%, rgba(254, 240, 138, 0.45) 45%, rgba(255, 251, 235, 0.8) 75%, #ffffff 100%)`,
-      }}
-    >
+    <div className="sensus-ambient-card relative overflow-hidden rounded-[28px] p-7 shadow-xs border flex flex-col justify-between">
       {/* Background soft glow blobs */}
       <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-amber-200/35 blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 -right-10 w-40 h-40 rounded-full bg-orange-100/40 blur-2xl pointer-events-none" />

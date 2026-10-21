@@ -66,12 +66,7 @@ export function JournalSidebarCard() {
       </div>
 
       {/* 2. Mindfulness Quote Card */}
-      <div
-        className="relative overflow-hidden rounded-[28px] p-6 shadow-xs border border-amber-200/40 flex flex-col justify-between"
-        style={{
-          background: `radial-gradient(ellipse at 85% 15%, rgba(254, 215, 170, 0.75) 0%, rgba(254, 240, 138, 0.45) 45%, rgba(255, 251, 235, 0.8) 75%, #ffffff 100%)`,
-        }}
-      >
+      <div className="sensus-ambient-card relative overflow-hidden rounded-[28px] p-6 shadow-xs border flex flex-col justify-between">
         <div className="relative z-10">
           <div className="w-8 h-8 rounded-xl bg-amber-300 text-zinc-900 flex items-center justify-center font-bold mb-3 shadow-2xs">
             <Quote className="w-4 h-4 fill-current" />

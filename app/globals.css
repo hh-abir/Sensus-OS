@@ -29,20 +29,48 @@ body {
 }
 
 /* =========================================================================
+   AMBIENT HEARTH CARD (Replaces inline white radial gradients)
+   ========================================================================= */
+
+.sensus-ambient-card {
+  background: radial-gradient(ellipse at 85% 15%, rgba(254, 215, 170, 0.75) 0%, rgba(254, 240, 138, 0.45) 45%, rgba(255, 251, 235, 0.8) 75%, #ffffff 100%);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+html.dark .sensus-ambient-card {
+  background: radial-gradient(ellipse at 85% 15%, rgba(180, 83, 9, 0.28) 0%, rgba(120, 53, 15, 0.18) 45%, rgba(38, 34, 29, 0.95) 75%, #201d1a 100%) !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+
+html.dark .sensus-ambient-card button {
+  background-color: rgba(45, 41, 36, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .sensus-ambient-card button:hover {
+  background-color: rgba(55, 50, 44, 0.9) !important;
+}
+
+html.dark .sensus-ambient-card button span.text-zinc-800 {
+  color: #ede8df !important;
+}
+
+/* =========================================================================
    CANDLELIGHT THEME (Mindful Evening Sanctuary)
-   Deep warm charcoal (#161513), soft cream linen (#ede8df), and warm amber.
+   Deep warm charcoal (#161513), soft cream linen (#f5f2eb), and warm amber.
    Zero blue light, zero cold grays, zero harsh black.
+   High-contrast WCAG AAA legibility.
    ========================================================================= */
 
 html.dark {
   --background: #161513;
-  --foreground: #ede8df;
+  --foreground: #f5f2eb;
   color-scheme: dark;
 }
 
 html.dark body {
   background-color: #161513 !important;
-  color: #ede8df !important;
+  color: #f5f2eb !important;
 }
 
 /* Main Canvas & Drawers */
@@ -76,6 +104,10 @@ html.dark .bg-zinc-50\/70,
 html.dark .bg-zinc-50\/50,
 html.dark .bg-zinc-100 {
   background-color: #292622 !important;
+}
+
+html.dark .bg-zinc-100\/90 {
+  background-color: #2e2a25 !important;
 }
 
 /* Hover States */
@@ -112,25 +144,25 @@ html.dark .bg-zinc-950 svg {
   stroke: #161513 !important;
 }
 
-/* Text Hierarchy in Candlelight */
+/* High-Contrast Crisp Text Hierarchy in Candlelight */
 html.dark .text-zinc-950,
 html.dark .text-zinc-900,
 html.dark .text-zinc-800 {
-  color: #ede8df !important;
+  color: #f5f2eb !important; /* Brighter, high-contrast warm cream */
 }
 
 html.dark .text-zinc-700,
 html.dark .text-zinc-600 {
-  color: #c4beb4 !important;
+  color: #d6d0c4 !important; /* Clear readable secondary text */
 }
 
 html.dark .text-zinc-500,
 html.dark .text-zinc-400 {
-  color: #8c867a !important;
+  color: #aba496 !important; /* High-contrast tertiary text, clearly visible */
 }
 
 html.dark .text-zinc-300 {
-  color: #5c574e !important;
+  color: #7d766a !important;
 }
 
 /* Subtle Warm Borders */
@@ -150,14 +182,47 @@ html.dark .ring-zinc-200\/60 {
   --tw-ring-color: rgba(85, 78, 70, 0.45) !important;
 }
 
+/* Calendar highlighted badges */
+html.dark .bg-\[\#fcd34d\] {
+  color: #161513 !important;
+}
+html.dark .bg-\[\#f5c661\] {
+  color: #161513 !important;
+}
+
+/* Daily Planner Jewel-Toned Events in Candlelight */
+html.dark .bg-\[\#fde68a\] {
+  background-color: rgba(245, 158, 11, 0.25) !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+}
+html.dark .bg-\[\#fde68a\] p {
+  color: #fef3c7 !important;
+}
+
+html.dark .bg-\[\#bfdbfe\] {
+  background-color: rgba(59, 130, 246, 0.25) !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+html.dark .bg-\[\#bfdbfe\] p {
+  color: #dbeafe !important;
+}
+
+html.dark .bg-\[\#a7f3d0\] {
+  background-color: rgba(16, 185, 129, 0.25) !important;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+}
+html.dark .bg-\[\#a7f3d0\] p {
+  color: #d1fae5 !important;
+}
+
 /* Accent Badges with gentle low luminance */
 html.dark .bg-emerald-50 {
-  background-color: rgba(16, 185, 129, 0.12) !important;
+  background-color: rgba(16, 185, 129, 0.14) !important;
   color: #6ee7b7 !important;
 }
 html.dark .border-emerald-200\/50,
 html.dark .border-emerald-200\/60 {
-  border-color: rgba(16, 185, 129, 0.25) !important;
+  border-color: rgba(16, 185, 129, 0.28) !important;
 }
 html.dark .text-emerald-700,
 html.dark .text-emerald-800,
@@ -166,7 +231,7 @@ html.dark .text-emerald-600 {
 }
 
 html.dark .bg-amber-50 {
-  background-color: rgba(245, 158, 11, 0.14) !important;
+  background-color: rgba(245, 158, 11, 0.16) !important;
   color: #fcd34d !important;
 }
 html.dark .text-amber-700,
@@ -175,7 +240,7 @@ html.dark .text-amber-800 {
 }
 
 html.dark .bg-blue-50 {
-  background-color: rgba(59, 130, 246, 0.12) !important;
+  background-color: rgba(59, 130, 246, 0.14) !important;
   color: #93c5fd !important;
 }
 html.dark .text-blue-700,
@@ -184,7 +249,7 @@ html.dark .text-blue-800 {
 }
 
 html.dark .bg-purple-50 {
-  background-color: rgba(168, 85, 247, 0.12) !important;
+  background-color: rgba(168, 85, 247, 0.14) !important;
   color: #d8b4fe !important;
 }
 html.dark .text-purple-700,
@@ -194,7 +259,7 @@ html.dark .text-purple-600 {
 }
 
 html.dark .bg-red-50 {
-  background-color: rgba(239, 68, 68, 0.12) !important;
+  background-color: rgba(239, 68, 68, 0.14) !important;
   color: #fca5a5 !important;
 }
 html.dark .text-red-700,
@@ -202,7 +267,7 @@ html.dark .text-red-600 {
   color: #fca5a5 !important;
 }
 
-/* Ambient Glow Hearth for Greeting Card & Headers */
+/* Ambient Glow Hearth for Headers */
 html.dark .from-\[\#fef3c7\]\/60 {
   --tw-gradient-from: rgba(120, 53, 15, 0.22) !important;
 }

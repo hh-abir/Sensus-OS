@@ -11,12 +11,7 @@ export function DocumentStats({ onNewDoc }: DocumentStatsProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
       {/* Amber Greeting & Quick Action Banner (approx 5/12 cols) */}
-      <div
-        className="lg:col-span-5 relative overflow-hidden rounded-[28px] p-7 shadow-xs border border-amber-200/40 flex flex-col justify-between"
-        style={{
-          background: `radial-gradient(ellipse at 85% 15%, rgba(254, 215, 170, 0.75) 0%, rgba(254, 240, 138, 0.45) 45%, rgba(255, 251, 235, 0.8) 75%, #ffffff 100%)`,
-        }}
-      >
+      <div className="sensus-ambient-card lg:col-span-5 relative overflow-hidden rounded-[28px] p-7 shadow-xs border flex flex-col justify-between">
         {/* Ambient glow blobs */}
         <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full bg-amber-200/40 blur-3xl pointer-events-none" />
 
