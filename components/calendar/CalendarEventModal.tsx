@@ -104,11 +104,11 @@ export function CalendarEventModal({
       <div className="relative z-10 w-full max-w-lg bg-white rounded-[28px] shadow-2xl border border-zinc-200/80 p-6 animate-in fade-in zoom-in-95 duration-150">
         <div className="flex items-center justify-between pb-3.5 border-b border-zinc-100">
           <div>
-            <h3 className="text-base font-bold text-zinc-950 tracking-tight">
-              Schedule Event or Focus Block
+            <h3 className="text-sm font-bold text-zinc-900 tracking-tight">
+              Schedule Event
             </h3>
             <p className="text-[11px] text-zinc-400 font-normal">
-              Organize your day around deliberate human rhythms
+              Add to your day rhythm
             </p>
           </div>
           <button
@@ -193,7 +193,7 @@ export function CalendarEventModal({
                   }}
                   className={`px-2.5 py-1.5 rounded-xl text-left border text-[11px] font-semibold transition-all cursor-pointer ${
                     timeSlot === opt.id
-                      ? "border-zinc-900 bg-zinc-900 text-white shadow-2xs"
+                      ? "border-amber-300 bg-[#fffbeb] text-amber-950 font-bold shadow-2xs"
                       : "border-zinc-200/70 bg-zinc-50 hover:bg-zinc-100 text-zinc-700"
                   }`}
                 >
@@ -217,7 +217,7 @@ export function CalendarEventModal({
                   onClick={() => setSphere(s.id)}
                   className={`px-2.5 py-1 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
                     sphere === s.id
-                      ? "border-zinc-900 bg-white shadow-xs ring-1 ring-zinc-900"
+                      ? "border-zinc-400 bg-white shadow-2xs font-bold text-zinc-900 ring-1 ring-zinc-300"
                       : "border-zinc-200/60 bg-zinc-50 text-zinc-600 hover:bg-zinc-100"
                   }`}
                 >
@@ -301,7 +301,7 @@ export function CalendarEventModal({
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-full bg-zinc-900 hover:bg-zinc-800 text-xs font-semibold text-white shadow-xs transition-all cursor-pointer"
+              className="px-5 py-2 rounded-full bg-[#edebe6] hover:bg-[#e4e1d7] text-zinc-800 border border-zinc-300/80 text-xs font-semibold shadow-2xs transition-all cursor-pointer"
             >
               Add to Schedule
             </button>

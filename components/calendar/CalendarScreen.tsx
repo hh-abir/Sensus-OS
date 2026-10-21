@@ -14,7 +14,10 @@ import {
 } from "lucide-react";
 import { CalendarWeekView } from "./CalendarWeekView";
 import { CalendarMonthView } from "./CalendarMonthView";
-import { CalendarDaySidebar } from "./CalendarDaySidebar";
+import { CalendarDayAgenda } from "./CalendarDayAgenda";
+import { CalendarRitualsCard } from "./CalendarRitualsCard";
+import { CalendarFocusQueueCard } from "./CalendarFocusQueueCard";
+import { CalendarSpheresBalanceCard } from "./CalendarSpheresBalanceCard";
 import { CalendarEventModal } from "./CalendarEventModal";
 import { SoundscapeType } from "../focus/FocusContext";
 
@@ -288,10 +291,10 @@ export function CalendarScreen() {
             ))}
           </select>
 
-          {/* Schedule Event Button */}
+          {/* Schedule Event Button (Soft warm pill, no harsh black) */}
           <button
             onClick={() => handleOpenScheduler(selectedDate)}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-xs shadow-xs transition-transform active:scale-98 cursor-pointer"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#edebe6] hover:bg-[#e4e1d7] text-zinc-800 border border-zinc-300/70 font-semibold text-xs shadow-2xs transition-all cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Schedule</span>
@@ -299,10 +302,10 @@ export function CalendarScreen() {
         </div>
       </div>
 
-      {/* 2. Main Calendar Workspace Grid (Asymmetric) */}
-      <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-6 items-start">
-        {/* Left: Active Canvas View (Week Horizon or Month Grid) */}
-        <div className="w-full">
+      {/* 2. Row 1: Asymmetric Main Rhythm Stage (70% Canvas / 30% Day Agenda) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 xl:grid-cols-10 gap-6 items-stretch">
+        {/* 70% Width: Week Horizon Canvas or Month Grid */}
+        <div className="lg:col-span-8 xl:col-span-7 h-full flex flex-col">
           {viewMode === "week" ? (
             <CalendarWeekView
               events={filteredEvents}
@@ -321,19 +324,31 @@ export function CalendarScreen() {
           )}
         </div>
 
-        {/* Right: Day Inspector & Focus Blocks Queue */}
-        <div className="w-full">
-          <CalendarDaySidebar
+        {/* 30% Width: Selected Day Agenda Inspector */}
+        <div className="lg:col-span-4 xl:col-span-3 h-full flex flex-col">
+          <CalendarDayAgenda
             selectedDate={selectedDate}
             events={events}
             onOpenScheduler={handleOpenScheduler}
             onToggleEventComplete={handleToggleEventComplete}
-            onSelectDate={setSelectedDate}
           />
         </div>
       </div>
 
-      {/* 3. Quick Event / Focus Scheduler Modal */}
+      {/* 3. Row 2: Symmetric 3-Card Row (33% Rituals / 33% Focus Queue / 33% Spheres Balance) */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <div className="h-full">
+          <CalendarRitualsCard />
+        </div>
+        <div className="h-full">
+          <CalendarFocusQueueCard events={events} />
+        </div>
+        <div className="h-full">
+          <CalendarSpheresBalanceCard />
+        </div>
+      </div>
+
+      {/* 4. Quick Event Scheduler Modal */}
       <CalendarEventModal
         isOpen={isSchedulerOpen}
         onClose={() => setIsSchedulerOpen(false)}

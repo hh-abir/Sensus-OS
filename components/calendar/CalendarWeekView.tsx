@@ -110,7 +110,7 @@ export function CalendarWeekView({
                   onClick={() => onSelectDate(day.dateStr)}
                   className={`w-full py-2.5 px-2 rounded-2xl flex flex-col items-center justify-center transition-all cursor-pointer border ${
                     day.isToday
-                      ? "bg-zinc-900 text-white border-zinc-900 shadow-xs"
+                      ? "bg-[#fffbeb] text-amber-950 border-2 border-amber-400/90 shadow-2xs font-bold"
                       : isSelected
                       ? "bg-white text-zinc-950 border-zinc-300 shadow-2xs font-bold"
                       : "bg-zinc-50/70 hover:bg-zinc-100 text-zinc-700 border-zinc-200/60"
@@ -118,7 +118,7 @@ export function CalendarWeekView({
                 >
                   <span
                     className={`text-[10px] font-bold uppercase tracking-wider ${
-                      day.isToday ? "text-amber-300" : "text-zinc-400"
+                      day.isToday ? "text-amber-800" : "text-zinc-400"
                     }`}
                   >
                     {day.name}
@@ -146,7 +146,7 @@ export function CalendarWeekView({
                           <button
                             type="button"
                             onClick={() => onOpenScheduler(day.dateStr)}
-                            className="opacity-0 group-hover/slot:opacity-100 w-4 h-4 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white flex items-center justify-center transition-opacity cursor-pointer"
+                            className="opacity-0 group-hover/slot:opacity-100 w-4 h-4 rounded-full bg-[#edebe6] hover:bg-[#e4e1d7] text-zinc-700 border border-zinc-300/60 flex items-center justify-center transition-opacity cursor-pointer shadow-2xs"
                             title={`Add event in ${horizon.label}`}
                           >
                             <Plus className="w-2.5 h-2.5" />
@@ -211,7 +211,7 @@ export function CalendarWeekView({
                                     <button
                                       type="button"
                                       onClick={(e) => handleLaunchFocus(e, evt)}
-                                      className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-zinc-900 hover:bg-zinc-800 text-white text-[9px] font-bold shadow-2xs cursor-pointer"
+                                      className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-white hover:bg-zinc-100 text-zinc-800 border border-zinc-200/90 text-[9px] font-bold shadow-2xs cursor-pointer"
                                       title="Launch Focus Session"
                                     >
                                       <Play className="w-2 h-2 fill-current" />

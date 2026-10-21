@@ -74,9 +74,9 @@ export function CalendarMonthView({
                 <span
                   className={`text-xs font-mono font-bold w-6 h-6 rounded-full flex items-center justify-center ${
                     isToday
-                      ? "bg-zinc-900 text-white"
+                      ? "bg-amber-100 text-amber-950 border border-amber-300 font-bold"
                       : isSelected
-                      ? "bg-zinc-200 text-zinc-950"
+                      ? "bg-[#edebe6] text-zinc-950 font-bold"
                       : "text-zinc-800"
                   }`}
                 >
