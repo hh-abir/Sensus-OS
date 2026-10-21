@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LayoutGrid,
   FileText,
@@ -17,38 +19,51 @@ import { SensusBrand } from "./SensusLogo";
 interface TopNavProps {
   activeTab?: string;
   onTabChange?: (tabId: string) => void;
+  onOpenSettings?: () => void;
+  isSettingsOpen?: boolean;
 }
 
-export function TopNav({ activeTab = "overview", onTabChange }: TopNavProps) {
-  const [internalTab, setInternalTab] = useState(activeTab);
+export function TopNav({
+  activeTab,
+  onTabChange,
+  onOpenSettings,
+  isSettingsOpen = false,
+}: TopNavProps) {
+  const pathname = usePathname();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const currentTab = onTabChange ? activeTab : internalTab;
-  const handleTabClick = (tabId: string) => {
-    if (onTabChange) {
-      onTabChange(tabId);
-    } else {
-      setInternalTab(tabId);
-    }
-  };
-
   const tabs = [
-    { id: "overview", label: "Overview", icon: LayoutGrid },
-    { id: "documents", label: "Documents", icon: FileText },
-    { id: "projects", label: "Projects", icon: FolderKanban },
-    { id: "tasks", label: "Tasks", icon: CheckSquare },
-    { id: "journal", label: "Journal", icon: BookOpen },
-    { id: "mail", label: "Mail", icon: Mail },
-    { id: "settings", label: "Settings", icon: Settings },
+    { id: "overview", label: "Overview", icon: LayoutGrid, href: "/" },
+    { id: "documents", label: "Documents", icon: FileText, href: "/documents" },
+    { id: "projects", label: "Projects", icon: FolderKanban, href: "/projects" },
+    { id: "tasks", label: "Tasks", icon: CheckSquare, href: "/tasks" },
+    { id: "journal", label: "Journal", icon: BookOpen, href: "/journal" },
+    { id: "mail", label: "Mail", icon: Mail, href: "/mail" },
+    { id: "settings", label: "Settings", icon: Settings, href: "/settings", isDrawer: true },
   ];
+
+  const getIsActive = (tab: (typeof tabs)[number]) => {
+    if (tab.isDrawer) {
+      return isSettingsOpen;
+    }
+    if (activeTab) {
+      return activeTab === tab.id;
+    }
+    if (tab.href === "/") {
+      return pathname === "/" && !isSettingsOpen;
+    }
+    return pathname.startsWith(tab.href) && !isSettingsOpen;
+  };
 
   return (
     <header className="w-full flex items-center justify-between py-2 relative z-20">
       {/* Left: Brand */}
       <div className="flex items-center">
-        <SensusBrand />
+        <Link href="/" className="hover:opacity-90 transition-opacity">
+          <SensusBrand />
+        </Link>
       </div>
 
       {/* Center: Segmented Navigation Pill */}
@@ -58,13 +73,52 @@ export function TopNav({ activeTab = "overview", onTabChange }: TopNavProps) {
       >
         {tabs.map((tab) => {
           const Icon = tab.icon;
-          const isActive = currentTab === tab.id;
+          const isActive = getIsActive(tab);
+
+          if (tab.isDrawer) {
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={onOpenSettings}
+                className={`flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? "bg-zinc-900 text-white shadow-sm px-3.5 py-1.5 rounded-full font-semibold text-xs gap-1.5 whitespace-nowrap"
+                    : "w-8.5 h-8 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white/50"
+                }`}
+                title={tab.label}
+              >
+                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-amber-300" : "text-zinc-500"}`} />
+                {isActive && <span className="hidden sm:inline text-xs">{tab.label}</span>}
+              </button>
+            );
+          }
+
+          // If onTabChange is passed without real routing, support fallback
+          if (onTabChange) {
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => onTabChange(tab.id)}
+                className={`flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? "bg-white text-zinc-900 shadow-sm px-3.5 py-1.5 rounded-full font-semibold text-xs gap-1.5 whitespace-nowrap"
+                    : "w-8.5 h-8 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white/50"
+                }`}
+                title={tab.label}
+              >
+                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-zinc-900" : "text-zinc-500"}`} />
+                {isActive && <span className="hidden sm:inline text-xs">{tab.label}</span>}
+              </button>
+            );
+          }
 
           return (
-            <button
+            <Link
               key={tab.id}
-              onClick={() => handleTabClick(tab.id)}
-              className={`flex items-center justify-center transition-all duration-200 cursor-pointer ${
+              href={tab.href}
+              className={`flex items-center justify-center transition-all duration-200 ${
                 isActive
                   ? "bg-white text-zinc-900 shadow-sm px-3.5 py-1.5 rounded-full font-semibold text-xs gap-1.5 whitespace-nowrap"
                   : "w-8.5 h-8 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-white/50"
@@ -73,7 +127,7 @@ export function TopNav({ activeTab = "overview", onTabChange }: TopNavProps) {
             >
               <Icon className={`w-3.5 h-3.5 ${isActive ? "text-zinc-900" : "text-zinc-500"}`} />
               {isActive && <span className="hidden sm:inline text-xs">{tab.label}</span>}
-            </button>
+            </Link>
           );
         })}
       </nav>
@@ -144,9 +198,13 @@ export function TopNav({ activeTab = "overview", onTabChange }: TopNavProps) {
           )}
         </div>
 
-        {/* User profile avatar */}
-        <div className="relative group cursor-pointer">
-          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-white shadow-xs ring-1 ring-zinc-200/50">
+        {/* User profile avatar - opens settings drawer as well */}
+        <div
+          onClick={onOpenSettings}
+          className="relative group cursor-pointer"
+          title="Open Profile & Settings"
+        >
+          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-white shadow-xs ring-1 ring-zinc-200/50 hover:ring-zinc-400 transition-all">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
