@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Folder, BookOpen } from "lucide-react";
+import { Folder, Quote } from "lucide-react";
 import { DocumentStats } from "./DocumentStats";
 import { FolderGrid } from "./FolderGrid";
 import { DocumentList, DocumentItem } from "./DocumentList";
@@ -9,7 +9,7 @@ import { DocumentPreviewCard } from "./DocumentPreviewCard";
 import { ReadingSanctuary } from "./ReadingSanctuary";
 
 export function DocumentsScreen() {
-  const [activeTab, setActiveTab] = useState<"vault" | "reading">("vault");
+  const [activeTab, setActiveTab] = useState<"vault" | "quotes">("vault");
   const [selectedDoc, setSelectedDoc] = useState<DocumentItem>({
     id: "doc-1",
     name: "Sensus Design System 2.0 Spec",
@@ -31,12 +31,12 @@ export function DocumentsScreen() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white rounded-[24px] px-6 py-3.5 shadow-xs border border-zinc-200/50">
         <div>
           <h2 className="text-base font-bold text-zinc-950 tracking-tight">
-            {activeTab === "vault" ? "Documents & Specs Vault" : "Reading Sanctuary & Marginalia"}
+            {activeTab === "vault" ? "Documents & Specs Vault" : "Quotes Sanctuary & Marginalia"}
           </h2>
           <p className="text-[11px] text-zinc-400">
             {activeTab === "vault"
               ? "Design specifications, research drafts, and project archives"
-              : "Active books, reading horizons, and clipped quotes"}
+              : "Curated thoughts, aphorisms, and clipped literary marginalia"}
           </p>
         </div>
 
@@ -54,15 +54,15 @@ export function DocumentsScreen() {
             <span>Vault & Files</span>
           </button>
           <button
-            onClick={() => setActiveTab("reading")}
+            onClick={() => setActiveTab("quotes")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-              activeTab === "reading"
+              activeTab === "quotes"
                 ? "bg-white text-zinc-900 shadow-2xs font-bold"
                 : "text-zinc-600 hover:text-zinc-950"
             }`}
           >
-            <BookOpen className="w-3.5 h-3.5" />
-            <span>Reading Shelf</span>
+            <Quote className="w-3.5 h-3.5" />
+            <span>Quotes Sanctuary</span>
           </button>
         </div>
       </div>
