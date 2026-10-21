@@ -13,11 +13,6 @@ import {
   Settings,
   Search,
   Bell,
-  Sparkles,
-  ShieldCheck,
-  User,
-  Sliders,
-  ChevronRight,
 } from "lucide-react";
 import { SensusBrand } from "./SensusLogo";
 
@@ -232,97 +227,35 @@ export function TopNav({
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />
           </button>
 
-          {/* Profile Expanded Dropdown Menu */}
+          {/* Profile Minimal Dropdown Menu */}
           {showProfileMenu && (
             <>
               <div
                 className="fixed inset-0 z-40"
                 onClick={() => setShowProfileMenu(false)}
               />
-              <div className="absolute right-0 mt-2.5 w-72 bg-white rounded-2xl shadow-xl border border-zinc-200/70 p-2 z-50 animate-in fade-in zoom-in-95 duration-150 text-zinc-900">
-                {/* User Identity Header */}
-                <div className="px-3 py-3 border-b border-zinc-100 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden border border-zinc-200/80 shrink-0">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
-                      alt="Sarah Mitchell"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h4 className="text-xs font-bold text-zinc-900 truncate">Sarah Mitchell</h4>
-                    <p className="text-[11px] text-zinc-400 truncate">sarah.mitchell@sensus.life</p>
-                    <div className="flex items-center gap-1.5 mt-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
-                        Personal OS • Active
-                      </span>
-                    </div>
-                  </div>
+              <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-zinc-200/70 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-100 text-zinc-900">
+                {/* User Identity */}
+                <div className="px-3 py-2.5 border-b border-zinc-100">
+                  <p className="text-xs font-semibold text-zinc-900">Sarah Mitchell</p>
+                  <p className="text-[11px] text-zinc-400 mt-0.5 truncate">
+                    sarah.mitchell@sensus.life
+                  </p>
                 </div>
 
-                {/* Menu Items */}
-                <div className="py-1.5 space-y-0.5">
-                  {/* Settings & Preferences - opens slide-out drawer */}
+                {/* Menu */}
+                <div className="py-1">
                   <button
                     type="button"
                     onClick={() => {
                       setShowProfileMenu(false);
                       onOpenSettings?.();
                     }}
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100/80 transition-colors cursor-pointer group"
+                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100 transition-colors cursor-pointer text-left"
                   >
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-lg bg-zinc-100 group-hover:bg-zinc-200/70 flex items-center justify-center text-zinc-600 transition-colors">
-                        <Settings className="w-3.5 h-3.5" />
-                      </div>
-                      <span>Settings & Preferences</span>
-                    </div>
-                    <span className="text-[10px] text-zinc-400 font-mono">Drawer ⇥</span>
+                    <Settings className="w-3.5 h-3.5 text-zinc-400" />
+                    <span>Settings</span>
                   </button>
-
-                  {/* Focus & Audio Defaults */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowProfileMenu(false);
-                      onOpenSettings?.();
-                    }}
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100/80 transition-colors cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-lg bg-amber-50 group-hover:bg-amber-100/70 flex items-center justify-center text-amber-700 transition-colors">
-                        <Sparkles className="w-3.5 h-3.5" />
-                      </div>
-                      <span>Focus & Soundscapes</span>
-                    </div>
-                    <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
-                  </button>
-
-                  {/* Local Storage Vault */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowProfileMenu(false);
-                      onOpenSettings?.();
-                    }}
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100/80 transition-colors cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-lg bg-blue-50 group-hover:bg-blue-100/70 flex items-center justify-center text-blue-700 transition-colors">
-                        <ShieldCheck className="w-3.5 h-3.5" />
-                      </div>
-                      <span>Local Vault & Privacy</span>
-                    </div>
-                    <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
-                  </button>
-                </div>
-
-                {/* Footer status */}
-                <div className="pt-2 mt-1 border-t border-zinc-100 px-3 py-1.5 flex items-center justify-between text-[10px] text-zinc-400">
-                  <span>Sensus Lifestyle OS</span>
-                  <span className="font-mono text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">v2.4 Ready</span>
                 </div>
               </div>
             </>
