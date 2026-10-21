@@ -123,7 +123,7 @@ export function DocumentPreviewCard({ document }: DocumentPreviewCardProps) {
 
       {/* Action Buttons */}
       <div className="mt-6 pt-4 border-t border-zinc-100 flex flex-col gap-2">
-        <button className="w-full py-2.5 px-4 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white font-medium text-xs shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer">
+        <button className="w-full py-2.5 px-4 rounded-full bg-[#edebe6] hover:bg-[#e4e1d7] text-zinc-800 border border-zinc-300/70 font-semibold text-xs shadow-2xs transition-all flex items-center justify-center gap-2 cursor-pointer">
           <ExternalLink className="w-3.5 h-3.5" />
           <span>Open in Editor</span>
         </button>

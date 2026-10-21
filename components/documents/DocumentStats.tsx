@@ -31,7 +31,7 @@ export function DocumentStats({ onNewDoc }: DocumentStatsProps) {
         <div className="relative z-10 mt-6 flex flex-wrap items-center gap-2.5">
           <button
             onClick={onNewDoc}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#edebe6] hover:bg-[#e4e1d7] text-zinc-800 border border-zinc-300/70 text-xs font-semibold shadow-2xs transition-all cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>New Document</span>
