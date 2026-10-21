@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutGrid,
+  CalendarDays,
   FileText,
   FolderKanban,
   CheckSquare,
@@ -37,6 +38,7 @@ export function TopNav({
 
   const tabs = [
     { id: "overview", label: "Overview", icon: LayoutGrid, href: "/" },
+    { id: "calendar", label: "Calendar", icon: CalendarDays, href: "/calendar" },
     { id: "documents", label: "Documents", icon: FileText, href: "/documents" },
     { id: "projects", label: "Projects", icon: FolderKanban, href: "/projects" },
     { id: "tasks", label: "Tasks", icon: CheckSquare, href: "/tasks" },

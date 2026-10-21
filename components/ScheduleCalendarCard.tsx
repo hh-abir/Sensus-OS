@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, AlignJustify } from "lucide-react";
 
 export function ScheduleCalendarCard() {
@@ -70,9 +71,12 @@ export function ScheduleCalendarCard() {
         <h3 className="text-[15px] font-semibold text-zinc-900 tracking-tight">
           Upcoming Schedule
         </h3>
-        <button className="text-xs text-zinc-400 hover:text-zinc-700 font-medium transition-colors cursor-pointer">
-          See all
-        </button>
+        <Link
+          href="/calendar"
+          className="text-xs text-zinc-400 hover:text-zinc-900 font-medium transition-colors cursor-pointer"
+        >
+          See all →
+        </Link>
       </div>
 
       {/* Sub-header Controls */}
