@@ -13,8 +13,11 @@ import {
   Settings,
   Search,
   Bell,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { SensusBrand } from "./SensusLogo";
+import { useTheme } from "./theme/ThemeContext";
 
 interface TopNavProps {
   activeTab?: string;
@@ -30,6 +33,7 @@ export function TopNav({
   isSettingsOpen = false,
 }: TopNavProps) {
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -195,6 +199,21 @@ export function TopNav({
             </>
           )}
         </div>
+
+        {/* Ambient Theme Toggle (Daylight / Candlelight) */}
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="w-9 h-9 rounded-full bg-white/90 border border-zinc-200/50 shadow-xs flex items-center justify-center text-zinc-600 hover:text-zinc-950 hover:bg-white transition-all cursor-pointer"
+          title={theme === "candlelight" ? "Switch to Warm Daylight" : "Switch to Evening Candlelight"}
+          aria-label="Toggle theme atmosphere"
+        >
+          {theme === "candlelight" ? (
+            <Sun className="w-4 h-4 text-amber-400" />
+          ) : (
+            <Moon className="w-4 h-4 text-zinc-600" />
+          )}
+        </button>
 
         {/* User profile avatar with expanded menu */}
         <div className="relative">
