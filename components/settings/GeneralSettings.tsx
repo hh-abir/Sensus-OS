@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Check, Sparkles, Clock, Globe, Sun, Moon } from "lucide-react";
-import { useTheme } from "../theme/ThemeContext";
+import { Check, Sparkles, Clock, Globe } from "lucide-react";
 
 export function GeneralSettings() {
-  const { theme, setTheme } = useTheme();
   const [firstName, setFirstName] = useState("Sarah");
   const [lastName, setLastName] = useState("Mitchell");
   const [email, setEmail] = useState("sarah.m@sensus.app");
@@ -176,56 +174,6 @@ export function GeneralSettings() {
               <option value="19:00">07:00 PM</option>
             </select>
           </div>
-        </div>
-      </div>
-
-      {/* Form Section: Ambient Atmosphere */}
-      <div className="pt-5 border-t border-zinc-100">
-        <h4 className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2">
-          Workspace Atmosphere
-        </h4>
-        <p className="text-xs text-zinc-400 mb-4">
-          Switch between warm daylight parchment and mindful evening candlelight.
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button
-            type="button"
-            onClick={() => setTheme("daylight")}
-            className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-center gap-3 ${
-              theme === "daylight"
-                ? "border-zinc-900 bg-zinc-50 shadow-2xs font-semibold text-zinc-900 ring-1 ring-zinc-900/10"
-                : "border-zinc-200/70 bg-white hover:bg-zinc-50 text-zinc-600"
-            }`}
-          >
-            <div className="w-8 h-8 rounded-xl bg-amber-100/70 text-amber-700 flex items-center justify-center shrink-0">
-              <Sun className="w-4 h-4" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-bold text-zinc-900">Warm Daylight</p>
-              <p className="text-[11px] text-zinc-400">Natural off-white parchment</p>
-            </div>
-            {theme === "daylight" && <Check className="w-4 h-4 text-zinc-900" />}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setTheme("candlelight")}
-            className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-center gap-3 ${
-              theme === "candlelight"
-                ? "border-amber-400/80 bg-zinc-900 text-white shadow-2xs font-semibold"
-                : "border-zinc-200/70 bg-white hover:bg-zinc-50 text-zinc-600"
-            }`}
-          >
-            <div className="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0">
-              <Moon className="w-4 h-4" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-bold">Evening Candlelight</p>
-              <p className="text-[11px] text-zinc-400">Warm charcoal & amber glow</p>
-            </div>
-            {theme === "candlelight" && <Check className="w-4 h-4 text-amber-300" />}
-          </button>
         </div>
       </div>
 
