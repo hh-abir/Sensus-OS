@@ -441,6 +441,12 @@ export function ReadingSanctuary() {
         isOpen={isQuoteModalOpen}
         onClose={() => setIsQuoteModalOpen(false)}
         onSave={handleAddQuote}
+        activeBooks={books.map((b) => ({
+          id: b.id,
+          title: b.title,
+          author: b.author,
+          sphere: b.sphere,
+        }))}
       />
     </div>
   );
