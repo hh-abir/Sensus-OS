@@ -13,14 +13,17 @@ import { TasksScreen } from "./tasks/TasksScreen";
 import { JournalScreen } from "./journal/JournalScreen";
 import { MailScreen } from "./mail/MailScreen";
 import { SettingsScreen } from "./settings/SettingsScreen";
+import { FocusProvider } from "./focus/FocusContext";
+import { GlobalFocusDock } from "./focus/GlobalFocusDock";
 
 export function Dashboard() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="w-full flex flex-col gap-6 font-sans">
-      {/* Top Navigation */}
-      <TopNav activeTab={activeTab} onTabChange={setActiveTab} />
+    <FocusProvider>
+      <div className="w-full flex flex-col gap-6 font-sans relative pb-20">
+        {/* Top Navigation */}
+        <TopNav activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Screen Views */}
       {/* 1. Overview Screen */}
@@ -93,6 +96,10 @@ export function Dashboard() {
           <SettingsScreen />
         </div>
       )}
+
+      {/* Floating Global Focus Dock & Ambient Soundscapes */}
+      <GlobalFocusDock />
     </div>
+  </FocusProvider>
   );
 }

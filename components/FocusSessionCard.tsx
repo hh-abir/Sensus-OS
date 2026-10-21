@@ -1,47 +1,39 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ArrowUpRight, Play, Pause, RotateCcw } from "lucide-react";
+import { useFocus } from "./focus/FocusContext";
 
 export function FocusSessionCard() {
-  const [totalSeconds, setTotalSeconds] = useState(45 * 60);
-  const [initialSeconds] = useState(45 * 60);
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-    if (isActive && totalSeconds > 0) {
-      interval = setInterval(() => {
-        setTotalSeconds((sec) => Math.max(0, sec - 1));
-      }, 1000);
-    } else if (totalSeconds === 0) {
-      setIsActive(false);
-    }
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [isActive, totalSeconds]);
+  const {
+    isActive,
+    isPaused,
+    secondsLeft,
+    totalSeconds,
+    formattedTime,
+    taskTitle,
+    startFocus,
+    pauseFocus,
+    resumeFocus,
+    resetFocus,
+  } = useFocus();
 
   const toggleTimer = () => {
-    setIsActive(!isActive);
+    if (!isActive) {
+      startFocus("Design UI Kit", 45);
+    } else if (isPaused) {
+      resumeFocus();
+    } else {
+      pauseFocus();
+    }
   };
-
-  const resetTimer = () => {
-    setIsActive(false);
-    setTotalSeconds(initialSeconds);
-  };
-
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
   // SVG Circular progress
   const radius = 64;
   const strokeWidth = 12;
   const circumference = 2 * Math.PI * radius;
   // Progress fraction (the screenshot shows about 75-80% filled ring with round cap)
-  const progressRatio = totalSeconds / initialSeconds;
-  // Let the ring sweep around with an arc matching the visual
+  const progressRatio = totalSeconds > 0 ? secondsLeft / totalSeconds : 1;
   const maxArcLength = circumference * 0.78;
   const strokeDashoffset = circumference - maxArcLength * progressRatio;
 
@@ -51,7 +43,7 @@ export function FocusSessionCard() {
       <div className="flex items-center justify-between">
         <h3 className="text-[15px] font-semibold text-zinc-900 tracking-tight">Focus Session</h3>
         <button
-          onClick={resetTimer}
+          onClick={resetFocus}
           className="w-7 h-7 rounded-full bg-zinc-100 hover:bg-zinc-200/70 text-zinc-500 hover:text-zinc-900 flex items-center justify-center transition-colors cursor-pointer"
           title="Reset timer"
           aria-label="Reset timer"
@@ -93,11 +85,11 @@ export function FocusSessionCard() {
 
           {/* Time & Task Center Labels */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
-            <span className="text-3xl font-bold tracking-tight text-zinc-900">
+            <span className="text-3xl font-bold tracking-tight text-zinc-900 font-mono">
               {formattedTime}
             </span>
-            <span className="text-xs font-normal text-zinc-500 mt-0.5">
-              Design UI Kit
+            <span className="text-xs font-normal text-zinc-500 mt-0.5 max-w-[120px] truncate">
+              {taskTitle}
             </span>
           </div>
         </div>
@@ -108,14 +100,15 @@ export function FocusSessionCard() {
         onClick={toggleTimer}
         className="w-full py-2.5 px-4 rounded-full border border-zinc-200/80 bg-white hover:bg-zinc-50/80 active:scale-[0.98] text-zinc-800 font-medium text-xs sm:text-[13px] tracking-tight transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
       >
-        {isActive ? (
+        {isActive && !isPaused ? (
           <>
             <Pause className="w-3.5 h-3.5 text-zinc-600" />
             <span>Pause Focus</span>
           </>
         ) : (
           <>
-            <span>Start Focus</span>
+            <Play className="w-3.5 h-3.5 fill-current text-zinc-600" />
+            <span>{isActive && isPaused ? "Resume Focus" : "Start Focus"}</span>
           </>
         )}
       </button>

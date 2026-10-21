@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useFocus } from "../focus/FocusContext";
 import {
   Check,
   Plus,
@@ -840,6 +841,7 @@ function TaskCard({
   onMoveRight?: () => void;
   currentColumn: string;
 }) {
+  const { startFocus } = useFocus();
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -887,6 +889,29 @@ function TaskCard({
               <span className="text-[10px] text-zinc-400 font-medium">
                 ~{task.timeEstimate}
               </span>
+              {!task.completed && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const duration = task.timeEstimate.includes("1.5")
+                      ? 90
+                      : task.timeEstimate.includes("1h")
+                      ? 60
+                      : task.timeEstimate.includes("30")
+                      ? 30
+                      : task.timeEstimate.includes("15")
+                      ? 15
+                      : 45;
+                    startFocus(task.title, duration);
+                  }}
+                  className="flex items-center gap-1 text-[10px] font-semibold text-emerald-800 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100/80 px-2 py-0.5 rounded-md border border-emerald-200/50 transition-colors cursor-pointer"
+                  title="Launch Focus Session for this task"
+                >
+                  <Sparkles className="w-2.5 h-2.5 text-emerald-600" />
+                  <span>Focus</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import { ProjectShelf, ProjectData } from "./ProjectShelf";
 import { ProjectWorkbench } from "./ProjectWorkbench";
+import { useFocus } from "../focus/FocusContext";
 
 export function ProjectsScreen() {
+  const { startFocus } = useFocus();
   const [projects, setProjects] = useState<ProjectData[]>([
     {
       id: "p-1",
@@ -356,7 +358,7 @@ export function ProjectsScreen() {
               onToggleMilestone={handleToggleMilestone}
               onAddTask={handleAddTask}
               onStartFocus={(title) => {
-                // Focus triggered
+                startFocus(title, 45);
               }}
             />
           )}

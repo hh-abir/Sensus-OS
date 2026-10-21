@@ -75,10 +75,7 @@ export function ProjectWorkbench({
           {/* Action Button & Quick Stats */}
           <div className="flex flex-col sm:flex-row md:flex-col items-start md:items-end gap-3 shrink-0">
             <button
-              onClick={() => {
-                onStartFocus(project.title);
-                alert(`Starting 45m Focus Session for: "${project.title}"`);
-              }}
+              onClick={() => onStartFocus(project.title)}
               className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 active:scale-98 text-white font-semibold text-xs shadow-xs transition-all cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
